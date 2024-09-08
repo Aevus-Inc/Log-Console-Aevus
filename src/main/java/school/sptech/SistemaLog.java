@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 public class SistemaLog {
     void log(String tipoMensagem, String mensagem){
         LocalDateTime now = LocalDateTime.now();
-        DateTimeFormatter formatar = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        DateTimeFormatter formatar = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
         String timestamp = now.format(formatar);
 
         System.out.println(timestamp + " - " + tipoMensagem + " - " + mensagem);
@@ -48,7 +48,7 @@ public class SistemaLog {
         return true;
     }
 
-    void registarConta(String email, String senha, String confirmarSenha){
+    void registarConta(String email, String senha, String confirmarSenha) throws InterruptedException {
         log("INFO", "Iniciando cadastro de conta.");
         if (validarEmail(email) && validarSenha(senha, confirmarSenha)) {
             log("INFO", "Cadastro realizado com sucesso.");
